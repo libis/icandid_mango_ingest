@@ -1,0 +1,80 @@
+{
+  "schema_name": "icandid_source_file",
+  "version": "4.0.0",
+  "status": "published",
+  "properties": {
+    "createAction": {
+      "title": "CreateAction / DownloadAction",
+      "properties": {
+        "instrument": {
+          "title": "Instrument",
+          "type": "text",
+          "placeholder": "",
+          "pattern": "",
+          "help": "Instrument as described in <a href='https://schema.org/instrument'>Schema.org</a>"
+        },
+        "endTime": {
+          "title": "EndTime",
+          "type": "datetime-local",
+          "placeholder": "",
+          "pattern": "",
+          "help": "EndTime as described in <a href='https://schema.org/endTime'>Schema.org</a>"
+        },
+        "description": {
+          "title": "Description",
+          "type": "textarea",
+          "placeholder": "",
+          "pattern": "",
+          "help": "Description as described in <a href='https://schema.org/description'>Schema.org</a>"
+        }
+      },
+      "type": "object",
+      "required": false,
+      "repeatable": false,
+      "help": "<a href='https://schema.org/\nCreateAction'>CreateAction</a> or <a href='https://schema.org/\nDownloadAction'>DownloadAction</a> as described in Schema.org"
+    },
+    "dataFeed": {
+      "title": "DataFeed",
+      "properties": {
+        "temporalCoverage": {
+          "title": "TemporalCoverage",
+          "type": "text",
+          "placeholder": "2020-01-01/2020-01-31",
+          "pattern": "((\\d{4})?-?(\\d{2})?-?(\\d{2})|\\.\\.)\\/((\\d{4})?-?(\\d{2})?-?(\\d{2})|\\.\\.)",
+          "help": "TemporalCoverage as described in <a href='https://schema.org/temporalCoverage'>Schema.org</a>"
+        },
+        "description": {
+          "title": "Description",
+          "type": "textarea",
+          "placeholder": "",
+          "pattern": "",
+          "help": "Description as described in <a href='https://schema.org/description'>Schema.org</a>"
+        },
+        "encodingFormat": {
+          "title": "EncodingFormat",
+          "type": "select",
+          "values": [
+            "text/plain",
+            "text/html",
+            "application/pdf",
+            "application/csv",
+            "application/xml",
+            "application/json",
+            "other"
+          ],
+          "multiple": true,
+          "ui": "checkbox",
+          "help": "EncodingFormat as described in <a href='https://schema.org/encodingFormat'>Schema.org</a>"
+        }
+      },
+      "type": "object",
+      "required": false,
+      "repeatable": false,
+      "help": "DataFeed as described in <a href='https://schema.org//DataFeed'>Schema.org</a>"
+    }
+  },
+  "edited_by": "u0032774",
+  "realm": "iCANDID",
+  "title": "Source file",
+  "parent": ""
+}

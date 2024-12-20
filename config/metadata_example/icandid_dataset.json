@@ -1,0 +1,79 @@
+{
+  "schema_name": "icandid_dataset",
+  "version": "1.0.0",
+  "status": "draft",
+  "properties": {
+    "dataset": {
+      "title": "Dataset",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "text",
+          "placeholder": "",
+          "pattern": "",
+          "required": true,
+          "help": "Name described in <a href='https://schema.org/name'>Schema.org</a>"
+        },
+        "alternateName": {
+          "title": "AlternateName",
+          "type": "text",
+          "placeholder": "",
+          "pattern": "",
+          "help": "AlternateName as described in <a href='https://schema.org/alternateName'>Schema.org</a>"
+        },
+        "description": {
+          "title": "Description",
+          "type": "textarea",
+          "placeholder": "",
+          "pattern": "",
+          "help": "Description as described in <a href='https://schema.org/description'>Schema.org</a>"
+        },
+        "license": {
+          "title": "License",
+          "type": "text",
+          "placeholder": "",
+          "pattern": "",
+          "help": "License as described in <a href='https://schema.org/license'>Schema.org</a>"
+        },
+        "temporalCoverage": {
+          "title": "TemporalCoverage",
+          "type": "text",
+          "placeholder": "",
+          "pattern": "",
+          "help": "TemporalCoverage as described in <a href='https://schema.org/temporalCoverage'>Schema.org</a>"
+        },
+        "funder": {
+          "title": "Funder",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "text",
+              "placeholder": "",
+              "pattern": "",
+              "help": "Name as described in <a href='https://schema.org/name'>Schema.org</a>"
+            },
+            "email": {
+              "title": "Email address",
+              "type": "email",
+              "placeholder": "",
+              "pattern": "",
+              "help": "Email address as described in <a href='https://schema.org/email'>Schema.org</a>"
+            }
+          },
+          "type": "object",
+          "required": false,
+          "repeatable": false,
+          "help": "Funder as described in <a href='https://schema.org/funder'>Schema.org</a>"
+        }
+      },
+      "type": "object",
+      "required": false,
+      "repeatable": false,
+      "help": "Dataset as described in <a href='https://schema.org/Dataset'>Schema.org</a>"
+    }
+  },
+  "edited_by": "u0032774",
+  "realm": "iCANDID",
+  "title": "Dataset",
+  "parent": ""
+}

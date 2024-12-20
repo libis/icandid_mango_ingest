@@ -1,0 +1,11 @@
+{
+
+  "collections_file": "/app/config/collections_demo.json",
+  "mango_base_path": "/ghum/home/iCANDID",
+  "mango_records_dir": "/source_records/mango_ingest/",
+  "root_folder": "/source_records/",
+  "folder_filter_pattern": "TMDB",
+  "folder_ignore_pattern": "mango_ingest",
+  "provider_dataset_regex": "/source_records/(?P<provider>[^/]*)[/]?(?P<dataset>[^/]*)?",
+  "root_ingest_path": "/source_records/"
+}

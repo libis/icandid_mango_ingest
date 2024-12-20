@@ -1,0 +1,8 @@
+cachetools==5.5.0
+click==8.1.7
+pip==22.0.2
+python-irodsclient==2.1.0
+PyYAML==6.0.2
+rich==13.8.1
+setuptools==72.1.0
+watchdog==5.0.2

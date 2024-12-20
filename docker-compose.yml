@@ -1,0 +1,10 @@
+services:
+  icandid_mango_ingest:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/source_records/
+      - ./config:/app/config
+    env_file:
+      - env

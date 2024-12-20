@@ -1,0 +1,10 @@
+*__pycache__*
+*.egg-info
+config/*
+.env
+env*
+data/*
+lib/*
+notes*
+
+!*example*

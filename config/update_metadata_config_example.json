@@ -1,0 +1,7 @@
+{
+  "metadata_mappings": "/app/config/metadata_example/mappings.json",
+  "provider_schema_file": "/app/config/metadata_example/icandid_provider.json",
+  "dataset_schema_file": "/app/config/metadata_example/icandid_dataset.json",
+  "source_file_schema_file": "/app/config/metadata_example/icandid_source_file.json",
+  "last_update_time": "12/20/2024, 11:13:29"
+}

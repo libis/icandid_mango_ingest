@@ -1,0 +1,10 @@
+{
+    "encodingFormat":{
+        ".txt": "text/plain",
+        ".html": "text/html",
+        ".pdf": "application/pdf",
+        ".csv": "application/csv",
+        ".xml": "application/xml",
+        ".json": "application/json"
+    }
+}
