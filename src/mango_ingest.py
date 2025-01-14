@@ -382,9 +382,9 @@ class ManGOIngestWatcher(object):
         # lower the sail, absorb the watcher thread
         self.observer.join()
         # write out the report file before exiting
-        report_file = pathlib.Path(self.path, result_filename)
+        report_file = pathlib.Path(self.path, "mango_ingest_logs", result_filename)
         report_file.write_text(json.dumps(result, indent=2))
-        print(f"Updated report file {report_file}", style="orange1 bold", verbosity=2)
+        print(f"Updated --------- report file {report_file}", style="orange1 bold", verbosity=2)
 
         irods_session.cleanup()
         print("\n:waving_hand: Watcher terminated, have a nice day!", style="red bold")
@@ -810,6 +810,7 @@ def do_initial_sync_and_or_restart(
     metadata_handlers: list[(Callable, dict)] = [],
 ) -> dict:
 
+    print(f"sync path {path}", verbosity=4)
     path_objects = []
     # if there are restart paths to treat, add them
     if restart_paths:
@@ -821,7 +822,6 @@ def do_initial_sync_and_or_restart(
 
     for path_object in path_objects:
         if path_object.is_file() and (full_path := path_object.absolute()):
-
             print(f"sync {full_path}", verbosity=2)
             if ignore and any(
                 [re.search(pattern, str(full_path)) for pattern in ignore]
@@ -893,6 +893,7 @@ def do_initial_sync_and_or_restart(
                         irods_session,
                         irods_path
                     )
+                    
                 except Exception as e:
                     console.print( f"Problem handling dir {full_path}: {e}", style="red bold")
                     exit(1)    
@@ -949,7 +950,7 @@ def do_update_metadata(
                     rel_local_path = full_path.relative_to(path)
                     irods_path = str(pathlib.PurePath(destination, str(rel_local_path)))
                     irods_data_object = irods_session.data_objects.get(irods_path)
-                    print ( f"iRODS Collection {irods_collection.name} is available", verbosity=2)
+                    print ( f"iRODS Object {irods_data_object.name} is available", verbosity=2)
                     if update_metadata:
                         # print( f"UPDATE metadata for {irods_collection.name} ", verbosity=2)
                         '''
@@ -1243,7 +1244,7 @@ def mango_ingest(
         # since the option is not marked as required in order to have the option fall back
         # through environment variables and/or config file, we need to check and get it here
         if not destination:
-            destination = click.prompt("Please enter an iRODS destination patha")
+            destination = click.prompt("Please enter an iRODS destination path")
 
         if verbose or do_dry_run:
             global verbosity_level
@@ -1273,7 +1274,7 @@ def mango_ingest(
 
             def smart_save_results():
                 while True:
-                    report_file = pathlib.Path(path, result_filename)
+                    report_file = pathlib.Path(path, "mango_ingest_logs", result_filename)
                     if not report_file.exists() or (
                         report_file.exists()
                         and (
@@ -1404,7 +1405,7 @@ def mango_ingest(
                 update_metadata=update_metadata,
                 ctx=ctx.obj
             )
-            exit(0)
+
         if sync or restart or no_watch:
             print("First doing an initial sync/restart", style="red")
             do_initial_sync_and_or_restart(
@@ -1419,7 +1420,24 @@ def mango_ingest(
                 filter_kwargs=filter_func_kwargs,
                 restart_paths=restart_paths,
                 verify_checksum=verify_checksum,
+                metadata_handlers=None,
+            )
+            print("Update all metadata ", style="red")
+            do_update_metadata(
+                irods_session,
+                path,
+                destination=destination,
+                recursive=recursive,
+                regex=regex,
+                glob=sync_glob,
+                ignore=ignore,
+                filter=filter_func,
+                filter_kwargs=filter_func_kwargs,
+                restart_paths=restart_paths,
+                verify_checksum=verify_checksum,
                 metadata_handlers=metadata_handlers,
+                update_metadata=update_metadata,
+                ctx=ctx.obj
             )
 
         if not no_watch:
@@ -1450,7 +1468,6 @@ def mango_ingest(
             options = ctx.obj
             del options["ctx"]
             print(json.dumps(options, indent=2))
-
 
 @mango_ingest.command()
 @click.pass_context
